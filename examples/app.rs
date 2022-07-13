@@ -1,4 +1,4 @@
-use colink_sdk_a::{decode_jwt_without_validation, CoLink, Participant, SubscriptionMessage};
+use colink_sdk_a::{decode_jwt_without_validation, CoLink, Participant};
 use std::env;
 
 #[tokio::main]
@@ -27,14 +27,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
 
     let clt = CoLink::new(addr, jwt_b);
-    // TODO use read_or_wait instead
     let key = format!("tasks:{}:output", task_id);
-    let queue_name = clt.subscribe(&key, None).await?;
-    let mut subscriber = clt.new_subscriber(&queue_name).await?;
-    let data = subscriber.get_next().await?;
-    let message: SubscriptionMessage = prost::Message::decode(&*data).unwrap();
-    if message.change_type != "delete" {
-        println!("{}", String::from_utf8_lossy(&*message.payload));
-    }
+    let data = clt.read_or_wait(&key).await?;
+    println!("{}", String::from_utf8_lossy(&data));
     Ok(())
 }
