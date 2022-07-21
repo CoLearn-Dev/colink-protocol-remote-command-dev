@@ -14,11 +14,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let participants = vec![
         Participant {
             user_id: user_id_a.to_string(),
-            ptype: "initiator".to_string(),
+            role: "initiator".to_string(),
         },
         Participant {
             user_id: user_id_b.to_string(),
-            ptype: "receiver".to_string(),
+            role: "receiver".to_string(),
         },
     ];
     let cl = CoLink::new(addr, jwt_a);
