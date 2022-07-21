@@ -434,8 +434,8 @@ dependencies = [
 
 [[package]]
 name = "colink-sdk-a"
-version = "0.1.8"
-source = "git+ssh://git@github.com/CoLearn-Dev/colink-sdk-a-rust-dev.git?tag=v0.1.8#97898041a55782f7c1669453cff3cbe3e04df7b3"
+version = "0.1.9"
+source = "git+ssh://git@github.com/CoLearn-Dev/colink-sdk-a-rust-dev.git?tag=v0.1.9#ee2d58db34b61002a32f6def18ecec0fa026f391"
 dependencies = [
  "base64",
  "chrono",
@@ -456,8 +456,8 @@ dependencies = [
 
 [[package]]
 name = "colink-sdk-p"
-version = "0.1.8"
-source = "git+ssh://git@github.com/CoLearn-Dev/colink-sdk-p-rust-dev.git?tag=v0.1.8#cb500c56ca6fe83af9b6ede15881cfacff99fbe0"
+version = "0.1.9"
+source = "git+ssh://git@github.com/CoLearn-Dev/colink-sdk-p-rust-dev.git?tag=v0.1.9#1cfa7e691b4bf3f7b1d344efcdc252f65313ff71"
 dependencies = [
  "async-trait",
  "colink-sdk-a",

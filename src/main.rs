@@ -10,7 +10,7 @@ impl ProtocolEntry for Initiator {
         _cl: CoLink,
         _param: Vec<u8>,
         _participants: Vec<Participant>,
-    ) -> Result<(), Box<dyn std::error::Error>> {
+    ) -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
         println!("initiator");
         Ok(())
     }
@@ -24,7 +24,7 @@ impl ProtocolEntry for Receiver {
         cl: CoLink,
         param: Vec<u8>,
         _participants: Vec<Participant>,
-    ) -> Result<(), Box<dyn std::error::Error>> {
+    ) -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
         let cmd = String::from_utf8_lossy(&param);
         println!("execute: {}", cmd);
         let res = Command::new("bash")

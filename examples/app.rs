@@ -2,7 +2,7 @@ use colink_sdk_a::{decode_jwt_without_validation, CoLink, Participant};
 use std::env;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
     let args = env::args().skip(1).collect::<Vec<_>>();
     let addr = &args[0];
     let jwt_a = &args[1];
