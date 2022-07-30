@@ -26,9 +26,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>
         .run_task("remote_command", msg.as_bytes(), &participants, true)
         .await?;
 
-    let clt = CoLink::new(addr, jwt_b);
     let key = format!("tasks:{}:output", task_id);
-    let data = clt.read_or_wait(&key).await?;
+    let data = cl.read_or_wait(&key).await?;
+    let path = String::from_utf8_lossy(&data);
+    let data = cl.read_or_wait(&path).await?;
     println!("{}", String::from_utf8_lossy(&data));
     Ok(())
 }
