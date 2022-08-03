@@ -7,7 +7,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>
     let addr = &args[0];
     let jwt_a = &args[1];
     let jwt_b = &args[2];
-    let msg = if args.len() > 3 { &args[3] } else { "hello" };
+    let msg = if args.len() > 3 { &args[3] } else { "echo hello" };
     let user_id_a = decode_jwt_without_validation(jwt_a).unwrap().user_id;
     let user_id_b = decode_jwt_without_validation(jwt_b).unwrap().user_id;
 
@@ -28,8 +28,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>
 
     let key = format!("tasks:{}:output", task_id);
     let data = cl.read_or_wait(&key).await?;
-    let path = String::from_utf8_lossy(&data);
-    let data = cl.read_or_wait(&path).await?;
     println!("{}", String::from_utf8_lossy(&data));
     Ok(())
 }

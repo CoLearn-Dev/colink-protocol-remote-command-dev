@@ -11,15 +11,10 @@ impl ProtocolEntry for Initiator {
         participants: Vec<Participant>,
     ) -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
         println!("initiator");
-        cl.get_variable("output", &participants[1]).await?;
-        let key = format!(
-            "_remote_storage:private:{}:_variable_transfer:{}:output",
-            participants[1].user_id,
-            cl.get_task_id()?
-        );
+        let res = cl.get_variable("output", &participants[1]).await?;
         cl.create_entry(
             &format!("tasks:{}:output", cl.get_task_id()?),
-            key.as_bytes(),
+            &res,
         )
         .await?;
         Ok(())
