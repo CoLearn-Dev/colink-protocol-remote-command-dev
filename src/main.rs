@@ -1,9 +1,8 @@
-use colink_sdk_a::{CoLink, Participant};
-use colink_sdk_p::ProtocolEntry;
+use colink_sdk::{CoLink, Participant, ProtocolEntry};
 use std::process::Command;
 
 struct Initiator;
-#[colink_sdk_p::async_trait]
+#[colink_sdk::async_trait]
 impl ProtocolEntry for Initiator {
     async fn start(
         &self,
@@ -28,7 +27,7 @@ impl ProtocolEntry for Initiator {
 }
 
 struct Receiver;
-#[colink_sdk_p::async_trait]
+#[colink_sdk::async_trait]
 impl ProtocolEntry for Receiver {
     async fn start(
         &self,
@@ -52,7 +51,7 @@ impl ProtocolEntry for Receiver {
     }
 }
 
-colink_sdk_p::protocol_start!(
+colink_sdk::protocol_start!(
     ("remote_command:initiator", Initiator),
     ("remote_command:receiver", Receiver)
 );
