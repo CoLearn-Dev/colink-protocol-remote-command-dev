@@ -419,22 +419,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "colink-protocol-remote-command"
-version = "0.1.0"
-dependencies = [
- "colink-sdk",
- "prost",
- "prost-build",
- "regex",
- "tokio",
- "tracing",
- "uuid",
-]
-
-[[package]]
-name = "colink-sdk"
-version = "0.1.10"
-source = "git+ssh://git@github.com/CoLearn-Dev/colink-sdk-rust-dev.git?tag=v0.1.10#4eb3e048ceb3b7f3e74571c35293e8383605fdfd"
+name = "colink"
+version = "0.1.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f95be44b8105c0d47e3917a952e855806a350bae6e6da34e6d27a2af4989a6ba"
 dependencies = [
  "async-trait",
  "base64",
@@ -455,6 +443,19 @@ dependencies = [
  "tonic-build",
  "tracing",
  "tracing-subscriber",
+]
+
+[[package]]
+name = "colink-protocol-remote-command"
+version = "0.1.0"
+dependencies = [
+ "colink",
+ "prost",
+ "prost-build",
+ "regex",
+ "tokio",
+ "tracing",
+ "uuid",
 ]
 
 [[package]]

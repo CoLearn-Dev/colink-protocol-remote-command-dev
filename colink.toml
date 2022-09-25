@@ -1,0 +1,9 @@
+[package]
+name = "remote_command"
+keywords = ["remote command"]
+description = "remote command"
+entrypoint = "cargo run"
+
+[remote_command]
+name = "remote_command"
+description = "remote command"

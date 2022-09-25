@@ -1,4 +1,4 @@
-use colink_sdk::{decode_jwt_without_validation, CoLink, Participant};
+use colink::{decode_jwt_without_validation, CoLink, Participant};
 use std::env;
 
 #[tokio::main]
@@ -7,7 +7,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>
     let addr = &args[0];
     let jwt_a = &args[1];
     let jwt_b = &args[2];
-    let msg = if args.len() > 3 { &args[3] } else { "echo hello" };
+    let msg = if args.len() > 3 {
+        &args[3]
+    } else {
+        "echo hello"
+    };
     let user_id_a = decode_jwt_without_validation(jwt_a).unwrap().user_id;
     let user_id_b = decode_jwt_without_validation(jwt_b).unwrap().user_id;
 

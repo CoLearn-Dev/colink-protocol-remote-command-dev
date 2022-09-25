@@ -1,8 +1,8 @@
-use colink_sdk::{CoLink, Participant, ProtocolEntry};
+use colink::{CoLink, Participant, ProtocolEntry};
 use std::process::Command;
 
 struct Initiator;
-#[colink_sdk::async_trait]
+#[colink::async_trait]
 impl ProtocolEntry for Initiator {
     async fn start(
         &self,
@@ -12,17 +12,14 @@ impl ProtocolEntry for Initiator {
     ) -> Result<(), Box<dyn std::error::Error + Send + Sync + 'static>> {
         println!("initiator");
         let res = cl.get_variable("output", &participants[1]).await?;
-        cl.create_entry(
-            &format!("tasks:{}:output", cl.get_task_id()?),
-            &res,
-        )
-        .await?;
+        cl.create_entry(&format!("tasks:{}:output", cl.get_task_id()?), &res)
+            .await?;
         Ok(())
     }
 }
 
 struct Receiver;
-#[colink_sdk::async_trait]
+#[colink::async_trait]
 impl ProtocolEntry for Receiver {
     async fn start(
         &self,
@@ -46,7 +43,7 @@ impl ProtocolEntry for Receiver {
     }
 }
 
-colink_sdk::protocol_start!(
+colink::protocol_start!(
     ("remote_command:initiator", Initiator),
     ("remote_command:receiver", Receiver)
 );
