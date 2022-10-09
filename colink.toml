@@ -1,5 +1,6 @@
 [package]
 name = "remote_command"
+version = "0.1.1"
 keywords = ["remote command"]
 description = "remote command"
 entrypoint = "cargo run"
